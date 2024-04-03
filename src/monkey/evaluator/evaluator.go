@@ -273,12 +273,13 @@ func evalIdentifier(
 	node *ast.Identifier,
 	env *object.Environment,
 ) object.Object {
-	val, ok := env.Get(node.Value)
-	if !ok {
-		return newError("identifier not found: " + node.Value)
+	if val, ok := env.Get(node.Value); ok {
+		return val
 	}
-
-	return val
+	if builtin, ok := builtins[node.Value]; ok {
+		return builtin
+	}
+	return newError("identifier not found: " + node.Value)
 }
 
 func evalExpressions(
@@ -334,13 +335,24 @@ func evalStringInfixExpression(
 	operator string,
 	left, right object.Object,
 ) object.Object {
-	if operator != "+" {
+	switch operator {
+	case "+":
+		leftVal := left.(*object.String).Value
+		rightVal := right.(*object.String).Value
+		return &object.String{Value: leftVal + rightVal}
+
+	case "==":
+		leftVal := left.(*object.String).Value
+		rightVal := right.(*object.String).Value
+		return &object.Boolean{Value: leftVal == rightVal}
+
+	case "!=":
+		leftVal := left.(*object.String).Value
+		rightVal := right.(*object.String).Value
+		return &object.Boolean{Value: leftVal != rightVal}
+
+	default:
 		return newError("unknown operator: %s %s %s",
 			left.Type(), operator, right.Type())
 	}
-
-	leftVal := left.(*object.String).Value
-	rightVal := right.(*object.String).Value
-
-	return &object.String{Value: leftVal + rightVal}
 }
