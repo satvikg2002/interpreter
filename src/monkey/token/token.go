@@ -14,8 +14,11 @@ const (
 	EOF     = "EOF"
 
 	// Identifiers + literals
-	IDENT = "IDENT" // add, foobar, x, y, ...
-	INT   = "INT"   // 1343456
+	IDENT    = "IDENT" // add, foobar, x, y, ...
+	INT      = "INT"   // 1343456
+	STRING   = "STRING"
+	LBRACKET = "["
+	RBRACKET = "]"
 
 	// Operators
 	ASSIGN   = "="
@@ -48,8 +51,6 @@ const (
 	IF       = "IF"
 	ELSE     = "ELSE"
 	RETURN   = "RETURN"
-
-	STRING = "STRING"
 )
 
 var keywords = map[string]TokenType{
