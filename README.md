@@ -19,3 +19,5 @@ Implementing an interpreter for an imaginary language with reference to "Thorste
 **Parser** -  Recursive-Descent Parser, uses an AST (Abstract Syntax Tree), built from ground up, Top-Down Operator Precedence (Pratt Parser), Prefix and Postfix Expression parsing    
 
 **Evaluator** - Tree-walking interpreter, uses Go's inbuilt Garbage Collector, contained scopes (termed Environments), all values are "Objects"
+
+**Macro System** - A LISPy macro system which expands the Macros by changing and returning changed nodes to the AST. Uses "quote" and "unquote" to halt execution of current line or let it evaluate, respectively. 
