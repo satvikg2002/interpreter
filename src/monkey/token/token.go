@@ -20,6 +20,7 @@ const (
 	LBRACKET = "["
 	RBRACKET = "]"
 	COLON    = ":"
+	MACRO    = "MACRO"
 
 	// Operators
 	ASSIGN   = "="
@@ -62,6 +63,7 @@ var keywords = map[string]TokenType{
 	"if":     IF,
 	"else":   ELSE,
 	"return": RETURN,
+	"macro":  MACRO,
 }
 
 type Token struct {
