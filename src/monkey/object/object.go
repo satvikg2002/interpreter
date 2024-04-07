@@ -182,7 +182,7 @@ type Hashable interface {
 }
 
 type Quote struct {
-	Node ast.Statement
+	Node ast.Node
 }
 
 func (q *Quote) Type() ObjectType { return QUOTE_OBJ }
